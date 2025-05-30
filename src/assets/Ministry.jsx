@@ -1,9 +1,7 @@
 function Ministries(){
-
-    return(
+    return (
         <>
-<hi>Heello</hi>
-
+        <h1>Hello</h1>
         </>
     )
 }

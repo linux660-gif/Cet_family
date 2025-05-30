@@ -1,5 +1,5 @@
 
-import Ministries from "./assets/Ministries";
+import Ministries from "./assets/Ministry";
 import Navbar from "./assets/Navbar"
 import ReactDOM from "react-dom/client";
 import Home from "./assets/Home";

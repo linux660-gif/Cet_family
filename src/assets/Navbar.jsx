@@ -1,71 +1,113 @@
-//import { eventListeners } from "@popperjs/core";
-//import Signup from "./SignLogin";
-
-function Navbar(){
-    return(
-        //add a dark theme icon,logged in place holder. 
-        <>
-      
-<nav className = "navbar navbar-expand-lg bg-body-tertiary" >
-
-  <div className = "container-fluid" >
-    < a className = "navbar-brand" href="/" >  CET FAMILY </a>
-
-    <button className = "navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span className = "navbar-toggler-icon"></span>
-    </button>
-
-    <div className = "collapse navbar-collapse" id="navbarNav">
-      <ul className =" navbar-nav">
-
-        <li className = "nav-item">
-          <a className="nav-link active" aria-current="page" href="/">Home</a>
-        </li>
-
-        <li className = "nav-item">
-          <a className="nav-link" href="Ministries">Ministries</a>
-          </li>
-
-        <li className = "nav-item">
-          <a className="nav-link" href="Committees">Committees</a>
-        </li>
-
-        <li className = "nav-item">
-          <a className="nav-link" aria-disabled="true" href="About">About</a>
-        </li>
-
-        <li className = "Login" >
-            <a href="login"><button type="button" className="btn btn-primary" >Log in</button></a>
-        </li>
-
-        <li className = "Signup">
-            <a href = "signup" ><button type="button" className="btn btn-light">Sign Up</button></a>        </li>
-
-        <li className = "notificationicon">
-          <button className="notificationbutton">
-                     <svg xmlns = "http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bell-fill" viewBox="0 0 16 16">
-                     <path d = "M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2m.995-14.901a1 1 0 1 0-1.99 0A5 5 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901"/></svg>
-                    <span className="badge">3</span>
-          </button>
-        </li>
-
-         <li className = "settingicon">
-          <button className="settingbutton">
-             <span class="material-symbols-outlined"> settings </span>
-          </button>
-        </li>
+import React, { useState, useEffect } from 'react';
+import { FaBell, FaCog, FaSun, FaMoon, FaUser } from 'react-icons/fa';
 
 
-      </ul>
+function Navbar() {
+  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [hasScrolled, setHasScrolled] = useState(false);
 
-    </div>
+  // Toggle dark mode
+  const toggleDarkMode = () => {
+    setIsDarkMode(!isDarkMode);
+    document.body.classList.toggle('dark-theme');
+  };
 
-  </div>
+  // Close mobile menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (isMobileMenuOpen && !event.target.closest('.navbar-collapse')) {
+        setIsMobileMenuOpen(false);
+      }
+    };
 
-</nav>
-        </>
+    document.addEventListener('click', handleClickOutside);
+    return () => document.removeEventListener('click', handleClickOutside);
+  }, [isMobileMenuOpen]);
 
-    )
+  // Add scroll effect
+  useEffect(() => {
+    const handleScroll = () => {
+      setHasScrolled(window.scrollY > 10);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  return (
+    <nav className={`navbar navbar-expand-lg ${hasScrolled ? 'navbar-scrolled' : ''} ${isDarkMode ? 'dark-mode' : ''}`}>
+      <div className="container">
+        <a className="navbar-brand" href="/">
+          CET FAMILY
+        </a>
+
+        <button
+          className="navbar-toggler"
+          type="button"
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          aria-label="Toggle navigation"
+        >
+          <span className="navbar-toggler-icon"></span>
+        </button>
+
+        <div className={`navbar-collapse ${isMobileMenuOpen ? 'show' : ''}`}>
+          <ul className="navbar-nav">
+            <li className="nav-item">
+              <a className="nav-link active" href="/">
+                Home
+              </a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="/ministries">
+                Ministries
+              </a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="/committees">
+                Committees
+              </a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="/about">
+                About
+              </a>
+            </li>
+          </ul>
+
+          <div className="navbar-actions">
+            <button className="theme-toggle" onClick={toggleDarkMode}>
+              {isDarkMode ? <FaSun /> : <FaMoon />}
+            </button>
+            
+            <button className="notification-btn">
+              <FaBell />
+              <span className="notification-badge">3</span>
+            </button>
+            
+            <button className="settings-btn">
+              <FaCog />
+            </button>
+            
+            <div className="auth-buttons">
+              <a href="/login" className="btn btn-primary">
+                Log in
+              </a>
+              <a href="/signup" className="btn btn-outline">
+                Sign Up
+              </a>
+            </div>
+            
+            <div className="user-dropdown">
+              <button className="user-btn">
+                <FaUser />
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  );
 }
 
 export default Navbar;
