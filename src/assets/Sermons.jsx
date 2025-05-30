@@ -6,16 +6,16 @@ const SermonsSection = () => {
   const sermons = [
     {
       id: 1,
-      title: "The Power of Faith",
-      preacher: "Pastor John Kariuki",
+      title: "What then is Prayer?",
+      preacher: "Michael Githinji",
       date: "May 29, 2023",
       scripture: "Hebrews 11:1-6",
-      image: "/sermon1.jpg"
+      image: "/public"
     },
     {
       id: 2,
-      title: "Walking in Love",
-      preacher: "Elder Linus Ngugi",
+      title: "True Worshippers",
+      preacher: "Fidel Kisevu",
       date: "May 22, 2023",
       scripture: "1 Corinthians 13:1-13",
       image: "/sermon2.jpg"

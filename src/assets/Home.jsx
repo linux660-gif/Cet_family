@@ -2,6 +2,7 @@
 import ChurchHero from "./Carousel";
 import ContactSection from "./Contact";
 import TeamSection from "./Description";
+import GivingSection from "./Giving";
 import ProfileCard from "./Leadership"
 import MinistriesSection from "./MinistryHome";
 import SermonsSection from "./Sermons";
@@ -20,6 +21,7 @@ function Home(){
         <SermonsSection />
         <MinistriesSection />
         <TestimonialsSection />
+        <GivingSection />
         <ContactSection />
 
         </>

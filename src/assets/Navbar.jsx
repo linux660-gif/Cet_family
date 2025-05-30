@@ -59,17 +59,17 @@ function Navbar() {
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/ministries">
+              <a className="nav-link" href="/ministries" target='_blank'>
                 Ministries
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/committees">
+              <a className="nav-link" href="/committees" target='_blank'>
                 Committees
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/about">
+              <a className="nav-link" href="/about" target='_blank'>
                 About
               </a>
             </li>
